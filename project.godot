@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Juca-Valeiro"
 config/version="0.1 alpha"
-run/main_scene="uid://brf1dyv4hkg02"
+run/main_scene="uid://4cwx02mber65"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
