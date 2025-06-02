@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://4cwx02mber65"]
+[gd_scene load_steps=11 format=4 uid="uid://4cwx02mber65"]
 
 [ext_resource type="PackedScene" uid="uid://bp8axyy4v566d" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://r20spa62ta3o" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_yqjtg"]
@@ -176,6 +176,44 @@ size = Vector2(32, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42m04"]
 size = Vector2(16, 10)
 
+[sub_resource type="Animation" id="Animation_d7sgc"]
+resource_name = "move"
+length = 1.7
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.66667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(286, -212), Vector2(322, -212)]
+}
+
+[sub_resource type="Animation" id="Animation_ohi7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(286, -212)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efldd"]
+_data = {
+&"RESET": SubResource("Animation_ohi7l"),
+&"move": SubResource("Animation_d7sgc")
+}
+
 [node name="Game" type="Node2D"]
 
 [node name="worldmap" type="TileMapLayer" parent="."]
@@ -205,99 +243,119 @@ position = Vector2(579, 92)
 shape = SubResource("RectangleShape2D_yxshl")
 one_way_collision = true
 
-[node name="small-platform" type="AnimatableBody2D" parent="."]
+[node name="small-platform-1" type="AnimatableBody2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="small-platform"]
+[node name="Sprite2D" type="Sprite2D" parent="small-platform-1"]
 position = Vector2(399, 91.5)
 texture = ExtResource("3_d7sgc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform-1"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
-[node name="small-platform2" type="AnimatableBody2D" parent="."]
-position = Vector2(217, -24)
+[node name="small-platform-2" type="AnimatableBody2D" parent="."]
+position = Vector2(218, -32)
 
-[node name="Sprite2D" type="Sprite2D" parent="small-platform2"]
+[node name="Sprite2D" type="Sprite2D" parent="small-platform-2"]
 position = Vector2(399, 91.5)
 texture = ExtResource("3_d7sgc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform-2"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
-[node name="small-platform3" type="AnimatableBody2D" parent="."]
-position = Vector2(243, -56)
+[node name="small-platform-3" type="AnimatableBody2D" parent="."]
+position = Vector2(251, -63)
 
-[node name="Sprite2D" type="Sprite2D" parent="small-platform3"]
+[node name="Sprite2D" type="Sprite2D" parent="small-platform-3"]
 position = Vector2(399, 91.5)
 texture = ExtResource("3_d7sgc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform-3"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
-[node name="small-platform4" type="AnimatableBody2D" parent="."]
-position = Vector2(216, -89)
+[node name="small-platform-4" type="AnimatableBody2D" parent="."]
+position = Vector2(218, -98)
 
-[node name="Sprite2D" type="Sprite2D" parent="small-platform4"]
+[node name="Sprite2D" type="Sprite2D" parent="small-platform-4"]
 position = Vector2(399, 91.5)
 texture = ExtResource("3_d7sgc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform-4"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
-[node name="small-platform5" type="AnimatableBody2D" parent="."]
-position = Vector2(243, -129)
+[node name="small-platform-5" type="AnimatableBody2D" parent="."]
+position = Vector2(255, -126)
 
-[node name="Sprite2D" type="Sprite2D" parent="small-platform5"]
+[node name="Sprite2D" type="Sprite2D" parent="small-platform-5"]
 position = Vector2(399, 91.5)
 texture = ExtResource("3_d7sgc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform-5"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
-[node name="small-platform6" type="AnimatableBody2D" parent="."]
-position = Vector2(278, -167)
+[node name="small-platform-6" type="AnimatableBody2D" parent="."]
+position = Vector2(284, -158)
 
-[node name="Sprite2D" type="Sprite2D" parent="small-platform6"]
+[node name="Sprite2D" type="Sprite2D" parent="small-platform-6"]
 position = Vector2(399, 91.5)
 texture = ExtResource("3_d7sgc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform-6"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
-[node name="small-platform7" type="AnimatableBody2D" parent="."]
-position = Vector2(307, -203)
+[node name="small-platform-7" type="AnimatableBody2D" parent="."]
+position = Vector2(255, -186)
 
-[node name="Sprite2D" type="Sprite2D" parent="small-platform7"]
+[node name="Sprite2D" type="Sprite2D" parent="small-platform-7"]
 position = Vector2(399, 91.5)
 texture = ExtResource("3_d7sgc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small-platform-7"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
+
+[node name="moving-platform" type="AnimatableBody2D" parent="."]
+position = Vector2(286, -212)
+
+[node name="Sprite2D" type="Sprite2D" parent="moving-platform"]
+position = Vector2(399, 91.5)
+texture = ExtResource("3_d7sgc")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving-platform"]
+position = Vector2(399, 91.5)
+shape = SubResource("RectangleShape2D_42m04")
+one_way_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="moving-platform"]
+libraries = {
+&"": SubResource("AnimationLibrary_efldd")
+}
+autoplay = "move"
