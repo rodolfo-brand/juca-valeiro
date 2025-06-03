@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://4cwx02mber65"]
+[gd_scene load_steps=14 format=4 uid="uid://4cwx02mber65"]
 
 [ext_resource type="PackedScene" uid="uid://bp8axyy4v566d" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://r20spa62ta3o" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://bsjwwkjgpc2m5" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/platforms.png" id="3_d7sgc"]
+[ext_resource type="PackedScene" uid="uid://brvc1ye5rrdew" path="res://scenes/0.5-coin.tscn" id="4_ohi7l"]
+[ext_resource type="PackedScene" uid="uid://cnrws33bf8ugm" path="res://scenes/0.6-killzone.tscn" id="5_yxshl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7sgc"]
 texture = ExtResource("2_yqjtg")
@@ -176,6 +178,21 @@ size = Vector2(32, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42m04"]
 size = Vector2(16, 10)
 
+[sub_resource type="Animation" id="Animation_ohi7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(286, -212)]
+}
+
 [sub_resource type="Animation" id="Animation_d7sgc"]
 resource_name = "move"
 length = 1.7
@@ -193,26 +210,13 @@ tracks/0/keys = {
 "values": [Vector2(286, -212), Vector2(322, -212)]
 }
 
-[sub_resource type="Animation" id="Animation_ohi7l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(286, -212)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_efldd"]
 _data = {
 &"RESET": SubResource("Animation_ohi7l"),
 &"move": SubResource("Animation_d7sgc")
 }
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_efldd"]
 
 [node name="Game" type="Node2D"]
 
@@ -228,6 +232,8 @@ position = Vector2(17, 114)
 [node name="Camera2D2" type="Camera2D" parent="player"]
 position = Vector2(2, -9)
 zoom = Vector2(4, 4)
+limit_bottom = 180
+limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="platform" type="AnimatableBody2D" parent="."]
@@ -359,3 +365,39 @@ libraries = {
 &"": SubResource("AnimationLibrary_efldd")
 }
 autoplay = "move"
+
+[node name="coin" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(177, 104)
+
+[node name="coin2" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(177, 104)
+
+[node name="coin3" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(273, 102)
+
+[node name="coin4" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(352, 57)
+
+[node name="coin5" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(463, 101)
+
+[node name="coin6" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(513, 57)
+
+[node name="coin7" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(649, 15)
+
+[node name="coin8" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(652, -52)
+
+[node name="coin9" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(716, -136)
+
+[node name="coin10" parent="." instance=ExtResource("4_ohi7l")]
+position = Vector2(785, -154)
+
+[node name="killzone" parent="." instance=ExtResource("5_yxshl")]
+position = Vector2(232, 169)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+shape = SubResource("WorldBoundaryShape2D_efldd")
