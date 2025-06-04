@@ -6,7 +6,7 @@ func _on_body_entered(body):
 	print("You Died!")
 	body.get_node("CollisionShape2D").queue_free()
 	timer.start()
-	Engine.time_scale = 0.5
+	Engine.time_scale = 0.2
 	
 
 func _on_timer_timeout():

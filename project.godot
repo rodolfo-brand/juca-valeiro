@@ -16,10 +16,12 @@ run/main_scene="uid://4cwx02mber65"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Music="*res://scenes/music.tscn"
+
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=768
 window/size/resizable=false
 
 [input]
