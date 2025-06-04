@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfjbkdkygfe3y"]
+
+[ext_resource type="Script" uid="uid://8w7n3g1usujy" path="res://scripts/0.8_falling_platform.gd" id="1_ffpe8"]
+[ext_resource type="Texture2D" uid="uid://bsjwwkjgpc2m5" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/platforms.png" id="1_k4ay2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffpe8"]
+size = Vector2(14, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoe8k"]
+size = Vector2(14, 3.25)
+
+[node name="Falling-Platform" type="Sprite2D"]
+texture = ExtResource("1_k4ay2")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 10)
+script = ExtResource("1_ffpe8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ffpe8")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_aoe8k")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

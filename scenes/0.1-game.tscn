@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://4cwx02mber65"]
+[gd_scene load_steps=19 format=4 uid="uid://4cwx02mber65"]
 
 [ext_resource type="PackedScene" uid="uid://bp8axyy4v566d" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://r20spa62ta3o" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_yqjtg"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://brvc1ye5rrdew" path="res://scenes/0.5-coin.tscn" id="4_ohi7l"]
 [ext_resource type="PackedScene" uid="uid://cnrws33bf8ugm" path="res://scenes/0.6-killzone.tscn" id="5_yxshl"]
 [ext_resource type="PackedScene" uid="uid://mst4xi2p5mjm" path="res://scenes/0.7-Green-slime.tscn" id="6_yxshl"]
+[ext_resource type="PackedScene" uid="uid://bfjbkdkygfe3y" path="res://scenes/0.8-falling_platform.tscn" id="7_c68tg"]
+[ext_resource type="FontFile" uid="uid://b4unlsbuej50j" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="8_c68tg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efldd"]
 texture = ExtResource("2_yqjtg")
@@ -136,6 +138,7 @@ texture = ExtResource("2_yqjtg")
 1:15/0 = 0
 2:15/0 = 0
 3:15/0 = 0
+5:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_yxshl"]
 sources/0 = SubResource("TileSetAtlasSource_efldd")
@@ -315,7 +318,8 @@ size = Vector2(32, 9)
 size = Vector2(16, 10)
 
 [sub_resource type="Animation" id="Animation_ohi7l"]
-length = 0.001
+length = 1.5
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -323,10 +327,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.001, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(286, -212)]
+"values": [Vector2(286, -212), Vector2(321, -213)]
 }
 
 [sub_resource type="Animation" id="Animation_d7sgc"]
@@ -361,7 +365,7 @@ tile_set = SubResource("TileSet_yxshl")
 
 [node name="worldmap" type="TileMapLayer" parent="."]
 position = Vector2(73, 81)
-tile_map_data = PackedByteArray("AAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD+/wMAAAABAAAAAAD9/wMAAAAAAAEAAAD8/wMAAAAAAAEAAAD9/wEAAAABAAYAAAABAAIAAAAJAAAAAAACAAIAAAAKAAAAAAADAAIAAAALAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAEAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAEAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAEAAAALAAIAAAAAAAAAAAALAAMAAAAAAAEAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAEAAAANAAIAAAAAAAAAAAANAAMAAAAAAAEAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAEAAAARAAIAAAAAAAAAAAARAAMAAAAAAAEAAAASAAIAAAAAAAAAAAASAAMAAAAAAAEAAAAWAAIAAAAAAAAAAAAWAAMAAAAAAAEAAAAXAAIAAAAAAAAAAAAXAAMAAAAAAAEAAAAcAAIAAAAAAAAAAAAcAAMAAAAAAAEAAAAdAAMAAAABAAAAAAApAPL/AAAAAAAAAAApAPP/AAAAAAEAAAAqAPL/AAAAAAAAAAAqAPP/AAAAAAEAAAArAPL/AAAAAAAAAAArAPP/AAAAAAEAAAAsAPL/AAAAAAAAAAAsAPP/AAAAAAEAAAAuAPL/AAAAAAAAAAAuAPP/AAAAAAEAAAAtAPL/AAAAAAAAAAAtAPP/AAAAAAEAAAAvAPL/AAAAAAAAAAAvAPP/AAAAAAEAAAAwAPL/AAAAAAAAAAAwAPP/AAAAAAEAAAAvAPH/AAAIAAMAAAAFAAEAAAABAAMAAAAIAAEAAAAAAAUAAAAIAAAAAAAAAAMAAAASAAEAAAABAAYAAAANAAEAAAABAAQAAAAtAO7/AAACAAQAAAAtAPD/AAADAAcAAAAtAPH/AAADAAgAAAAqAPH/AAABAAYAAAAJAAEAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAEAAAAJAAIAAAAAAAEAAAAKAAMAAAABAAEAAAAJAAMAAAAAAAEAAAD7/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD7/wIAAAAAAAEAAAD6/wIAAAAAAAEAAAD6/wMAAAAAAAEAAAD7/wMAAAAAAAEAAAAKAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAbAAMAAAAAAAAAAAAaAAMAAAAAAAAAAAAZAAMAAAAAAAAAAAAYAAMAAAAAAAAAAAAdAAIAAAAAAAAAAAAcAAAAAAADAAcAAAAcAAEAAAADAAgAAAAcAP7/AAACAAQAAAAZAAAAAAAAAAMAAAAZAAEAAAAAAAQAAAAZAAIAAAAAAAUAAAAWAAEAAAABAAUAAAAbAAQAAAAAAAEAAAAcAAQAAAAAAAEAAAAdAAQAAAAAAAEAAAAaAAQAAAABAAEAAAAZAAQAAAAAAAEAAAAYAAQAAAABAAEAAAAXAAQAAAAAAAEAAAAWAAQAAAAAAAEAAAAxAPL/AAAAAAEAAAAxAPH/AAAAAAEAAAAxAPD/AAAAAAEAAAAxAO//AAAAAAEAAAAyAO//AAAAAAIAAAAxAO7/AAAAAAEAAAAyAO7/AAAAAAEAAAAzAO7/AAAAAAEAAAAzAO//AAAAAAEAAAAzAPD/AAAAAAEAAAAyAPD/AAAAAAEAAAAyAPH/AAAAAAEAAAAzAPH/AAAAAAEAAAAzAPL/AAAAAAEAAAAyAPL/AAAAAAEAAAAxAPP/AAABAAEAAAAzAPP/AAABAAAAAAAyAPP/AAAAAAEAAAAxAO3/AAABAAcAAAAyAO3/AAAAAAcAAAAzAO3/AAABAAcAAAA=")
+tile_map_data = PackedByteArray("AAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD+/wMAAAABAAAAAAD9/wMAAAAAAAEAAAD8/wMAAAAAAAEAAAD9/wEAAAABAAYAAAABAAIAAAAJAAAAAAACAAIAAAAKAAAAAAADAAIAAAALAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAEAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAEAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAEAAAALAAIAAAAAAAAAAAALAAMAAAAAAAEAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAEAAAANAAIAAAAAAAAAAAANAAMAAAAAAAEAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAEAAAARAAIAAAAAAAAAAAARAAMAAAAAAAEAAAASAAIAAAAAAAAAAAASAAMAAAAAAAEAAAApAPL/AAAAAAAAAAApAPP/AAAAAAEAAAAqAPL/AAAAAAAAAAAqAPP/AAAAAAEAAAArAPL/AAAAAAAAAAArAPP/AAAAAAEAAAAsAPL/AAAAAAAAAAAsAPP/AAAAAAEAAAAuAPL/AAAAAAAAAAAuAPP/AAAAAAEAAAAtAPL/AAAAAAAAAAAtAPP/AAAAAAEAAAAvAPL/AAAAAAAAAAAvAPP/AAAAAAEAAAAwAPL/AAAAAAAAAAAwAPP/AAAAAAEAAAAvAPH/AAAIAAMAAAAFAAEAAAABAAMAAAAIAAEAAAAAAAUAAAAIAAAAAAAAAAMAAAASAAEAAAABAAYAAAANAAEAAAABAAQAAAAtAO7/AAACAAQAAAAtAPD/AAADAAcAAAAtAPH/AAADAAgAAAAqAPH/AAABAAYAAAAJAAEAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAEAAAAJAAIAAAAAAAEAAAAKAAMAAAABAAEAAAAJAAMAAAAAAAEAAAD7/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD7/wIAAAAAAAEAAAD6/wIAAAAAAAEAAAD6/wMAAAAAAAEAAAD7/wMAAAAAAAEAAAAKAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAxAPL/AAAAAAEAAAAxAPH/AAAAAAEAAAAxAPD/AAAAAAEAAAAxAO//AAAAAAEAAAAyAO//AAAAAAIAAAAxAO7/AAAAAAEAAAAyAO7/AAAAAAEAAAAzAO7/AAAAAAEAAAAzAO//AAAAAAEAAAAzAPD/AAAAAAEAAAAyAPD/AAAAAAEAAAAyAPH/AAAAAAEAAAAzAPH/AAAAAAEAAAAzAPL/AAAAAAEAAAAyAPL/AAAAAAEAAAAxAPP/AAABAAEAAAAzAPP/AAABAAAAAAAyAPP/AAAAAAEAAAAxAO3/AAABAAcAAAAyAO3/AAAAAAcAAAAzAO3/AAABAAcAAAAWAAAAAAABAAUAAAAWAAEAAAAAAAAAAAAWAAIAAAAAAAEAAAAWAAMAAAAAAAEAAAAXAAEAAAAAAAAAAAAXAAIAAAAAAAEAAAAXAAMAAAAAAAEAAAAYAAIAAAAAAAAAAAAYAAMAAAABAAEAAAAZAP//AAAAAAMAAAAZAAAAAAAAAAQAAAAZAAEAAAAAAAUAAAAZAAIAAAAAAAAAAAAZAAMAAAAAAAEAAAAaAAIAAAAAAAAAAAAaAAMAAAABAAEAAAAbAAIAAAAAAAAAAAAbAAMAAAAAAAEAAAAcAP3/AAACAAQAAAAcAP//AAADAAcAAAAcAAAAAAADAAgAAAAcAAEAAAAAAAAAAAAcAAIAAAAAAAEAAAAcAAMAAAAAAAEAAAAdAAEAAAAAAAAAAAAdAAIAAAABAAAAAAAdAAMAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_efldd")
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
@@ -405,7 +409,7 @@ position = Vector2(516, 70)
 position = Vector2(649, 15)
 
 [node name="coin8" parent="coins" instance=ExtResource("4_ohi7l")]
-position = Vector2(652, -52)
+position = Vector2(649, -51)
 
 [node name="coin9" parent="coins" instance=ExtResource("4_ohi7l")]
 position = Vector2(716, -136)
@@ -429,6 +433,7 @@ shape = SubResource("RectangleShape2D_yxshl")
 one_way_collision = true
 
 [node name="small-platform-1" type="AnimatableBody2D" parent="platforms"]
+position = Vector2(218, -32)
 
 [node name="Sprite2D" type="Sprite2D" parent="platforms/small-platform-1"]
 position = Vector2(399, 91.5)
@@ -442,7 +447,7 @@ shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
 [node name="small-platform-2" type="AnimatableBody2D" parent="platforms"]
-position = Vector2(218, -32)
+position = Vector2(250, -63)
 
 [node name="Sprite2D" type="Sprite2D" parent="platforms/small-platform-2"]
 position = Vector2(399, 91.5)
@@ -456,7 +461,7 @@ shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
 [node name="small-platform-3" type="AnimatableBody2D" parent="platforms"]
-position = Vector2(251, -63)
+position = Vector2(250, -127)
 
 [node name="Sprite2D" type="Sprite2D" parent="platforms/small-platform-3"]
 position = Vector2(399, 91.5)
@@ -470,7 +475,7 @@ shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
 
 [node name="small-platform-4" type="AnimatableBody2D" parent="platforms"]
-position = Vector2(218, -98)
+position = Vector2(251, -199)
 
 [node name="Sprite2D" type="Sprite2D" parent="platforms/small-platform-4"]
 position = Vector2(399, 91.5)
@@ -479,48 +484,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/small-platform-4"]
-position = Vector2(399, 91.5)
-shape = SubResource("RectangleShape2D_42m04")
-one_way_collision = true
-
-[node name="small-platform-5" type="AnimatableBody2D" parent="platforms"]
-position = Vector2(255, -126)
-
-[node name="Sprite2D" type="Sprite2D" parent="platforms/small-platform-5"]
-position = Vector2(399, 91.5)
-texture = ExtResource("3_d7sgc")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 9)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/small-platform-5"]
-position = Vector2(399, 91.5)
-shape = SubResource("RectangleShape2D_42m04")
-one_way_collision = true
-
-[node name="small-platform-6" type="AnimatableBody2D" parent="platforms"]
-position = Vector2(284, -158)
-
-[node name="Sprite2D" type="Sprite2D" parent="platforms/small-platform-6"]
-position = Vector2(399, 91.5)
-texture = ExtResource("3_d7sgc")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 9)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/small-platform-6"]
-position = Vector2(399, 91.5)
-shape = SubResource("RectangleShape2D_42m04")
-one_way_collision = true
-
-[node name="small-platform-7" type="AnimatableBody2D" parent="platforms"]
-position = Vector2(255, -186)
-
-[node name="Sprite2D" type="Sprite2D" parent="platforms/small-platform-7"]
-position = Vector2(399, 91.5)
-texture = ExtResource("3_d7sgc")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 9)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/small-platform-7"]
 position = Vector2(399, 91.5)
 shape = SubResource("RectangleShape2D_42m04")
 one_way_collision = true
@@ -545,8 +508,64 @@ libraries = {
 }
 autoplay = "move"
 
+[node name="Falling-Plat-1" parent="platforms" instance=ExtResource("7_c68tg")]
+position = Vector2(401, 119)
+
+[node name="Falling-Plat-2" parent="platforms" instance=ExtResource("7_c68tg")]
+position = Vector2(681, -4)
+
+[node name="Falling-Plat-3" parent="platforms" instance=ExtResource("7_c68tg")]
+position = Vector2(616, -68)
+
 [node name="GreenSlime" parent="." instance=ExtResource("6_yxshl")]
-position = Vector2(466, 117)
+position = Vector2(193, 101)
 
 [node name="GreenSlime2" parent="." instance=ExtResource("6_yxshl")]
-position = Vector2(193, 102)
+position = Vector2(497, 101)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -30.0
+offset_top = 10.0
+offset_right = 94.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.93, 0.558, 0, 1)
+theme_override_fonts/font = ExtResource("8_c68tg")
+theme_override_font_sizes/font_size = 8
+text = "Press K to jump
+A to move left
+D to move right     "
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 547.0
+offset_top = 34.0
+offset_right = 682.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(1, 0.6, 0, 1)
+theme_override_fonts/font = ExtResource("8_c68tg")
+theme_override_font_sizes/font_size = 8
+text = "Phew! That was
+close!"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 540.0
+offset_top = -149.0
+offset_right = 664.0
+offset_bottom = -97.0
+theme_override_colors/font_color = Color(0.93, 0.558, 0, 1)
+theme_override_fonts/font = ExtResource("8_c68tg")
+theme_override_font_sizes/font_size = 8
+text = "Don't.
+Trust.
+Platforms."
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 856.0
+offset_top = -265.0
+offset_right = 980.0
+offset_bottom = -213.0
+theme_override_colors/font_color = Color(0.93, 0.558, 0, 1)
+theme_override_fonts/font = ExtResource("8_c68tg")
+theme_override_font_sizes/font_size = 8
+text = "What a nice loot!
+If you only had 
+double jump!"
